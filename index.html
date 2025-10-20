@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ポートフォリオ | あなたの名前</title>
+    <meta name="description" content="落ち着いたトーンの個人ポートフォリオ。制作実績とスキル、問い合わせ先を掲載しています。">
+    <meta name="color-scheme" content="light dark">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- フォント：システムUI優先＋Noto Sans JP fallback（外部CDN不要にしたい場合は削除してOK） -->
+    <style>
+      @font-face {
+        font-family: "NotoSansJP-Subset";
+        src: local("Noto Sans JP");
+        font-display: swap;
+      }
+    </style>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- キーボード操作向け：スキップリンク -->
+    <a class="skip-link" href="#main">メイン内容へ移動</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="#">
+          <span class="brand__name">あなたの名前</span>
+          <span class="brand__role">Web制作 / コーディング</span>
+        </a>
+        <nav class="site-nav" aria-label="主要ナビゲーション">
+          <ul>
+            <li><a href="#about">プロフィール</a></li>
+            <li><a href="#works">実績</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero section">
+        <div class="container">
+          <h1 class="hero__title">静かに、丁寧に、良いものを。</h1>
+          <p class="hero__lead">
+          落ち着いたトーンで、読みやすさと保守しやすさを大切にしたWeb制作を心がけています。
+        </p>
+          <p class="hero__cta">
+          <a class="btn" href="#works" aria-label="制作実績へ">制作実績を見る</a>
+        </p>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section__title">プロフィール</h2>
+          <div class="about">
+            <div class="about__text">
+              <p>
+              はじめまして、<strong>あなたの名前</strong>です。HTML / CSS / JavaScript を中心に、シンプルで保守しやすいサイトづくりを行っています。
+              人と関わり過ぎないワークスタイルを大切にしつつ、丁寧な納品を心がけています。
+            </p>
+              <ul class="about__list">
+                <li>得意分野：静的サイト、LP、軽量JSの導入</li>
+                <li>使用ツール：VS Code / GitHub / Figma（閲覧）</li>
+                <li>価値観：読みやすさ、アクセシビリティ、過度な装飾はしない</li>
+              </ul>
+            </div>
+            <aside class="about__card" aria-label="スキル概要">
+              <h3 class="visually-hidden">スキル</h3>
+              <dl class="kv">
+                <dt>HTML</dt>
+                <dd>セマンティックな構造設計</dd>
+                <dt>CSS</dt>
+                <dd>Flex / Grid / レスポンシブ</dd>
+                <dt>JS</dt>
+                <dd>必要最小限のインタラクション</dd>
+              </dl>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Works -->
+      <section id="works" class="section">
+        <div class="container">
+          <h2 class="section__title">制作実績</h2>
+
+          <ul class="cards" role="list">
+            <!-- 実績カード（必要数だけ複製） -->
+            <li class="card">
+              <article>
+                <h3 class="card__title">架空カフェ LP</h3>
+                <p class="card__meta">HTML / CSS / 1ページ</p>
+                <p class="card__desc">
+                余白と写真を活かした落ち着いたランディングページ。スマホ〜PCまでのレスポンシブ対応。
+              </p>
+                <p class="card__actions">
+                <a class="link" href="#" target="_blank" rel="noopener">デモを見る</a>
+                <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+              </p>
+              </article>
+            </li>
+
+            <li class="card">
+              <article>
+                <h3 class="card__title">個人ポートフォリオ</h3>
+                <p class="card__meta">HTML / CSS / JS</p>
+                <p class="card__desc">
+                スクロール時の控えめな演出とシンプルな情報設計。可読性を優先。
+              </p>
+                <p class="card__actions">
+                <a class="link" href="#" target="_blank" rel="noopener">デモを見る</a>
+                <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+              </p>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <div class="container">
+          <h2 class="section__title">お問い合わせ</h2>
+          <p>
+          お仕事のご相談はメールまたはSNSからお願いします。
+        </p>
+          <ul class="contact" role="list">
+            <li><a class="link" href="mailto:you@example.com">you@example.com</a></li>
+            <li><a class="link" href="#" target="_blank" rel="noopener">X（Twitter）</a></li>
+            <li><a class="link" href="#" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year"></span> あなたの名前</small>
+      </div>
+    </footer>
+
+    <script>
+      // 年表示
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ユーザーが「動きを減らす」を選んでいたらアニメ無効
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && 'IntersectionObserver' in window) {
+        const els = document.querySelectorAll('.section, .card');
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        els.forEach(el => io.observe(el));
+      }
+    </script>
+  </body>
+</html>
