@@ -1,0 +1,238 @@
+:root{
+  /* 配色：穏やかなネイビー系＋温かい紙色 */
+  --bg: #f7f7f5;
+  --card: #ffffff;
+  --ink: #1f2937;      /* 本文 */
+  --muted: #6b7280;    /* 補助テキスト */
+  --accent: #2f4858;   /* 深めの青緑 */
+  --line: #e6e7e9;
+
+  --radius: 8px;
+  --shadow: 0 6px 24px rgba(0,0,0,.06);
+  --container: 960px;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "NotoSansJP-Subset", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  --lh: 1.7;
+  --space: clamp(16px, 2vw, 22px);
+  --space-lg: clamp(28px, 4vw, 48px);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0f1418;
+    --card: #141a1f;
+    --ink: #e5e7eb;
+    --muted: #9aa4af;
+    --accent: #8fb5c5;
+    --line: #27323a;
+    --shadow: none;
+  }
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  font-family: var(--font);
+  line-height: var(--lh);
+  color: var(--ink);
+  background: radial-gradient(1200px 800px at 50% -10%, rgba(47,72,88,.06), transparent 60%), var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container{
+  width: min(100% - 2*var(--space), var(--container));
+  margin-inline: auto;
+}
+
+.visually-hidden{
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link{
+  position: absolute; left: 8px; top: -40px;
+  background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 6px; text-decoration: none;
+}
+.skip-link:focus{ top: 8px; }
+
+.site-header{
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: saturate(1.1) blur(6px);
+  background: color-mix(in oklab, var(--bg) 86%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner{
+  display: flex; align-items: center; justify-content: space-between;
+  padding-block: 14px;
+}
+.brand{
+  display: grid; gap: 2px; text-decoration: none; color: inherit;
+}
+.brand__name{ font-weight: 700; letter-spacing: .2px; }
+.brand__role{ font-size: .92rem; color: var(--muted); }
+
+.site-nav ul{ display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; }
+.site-nav a{
+  color: inherit; text-decoration: none; padding: 6px 8px; border-radius: 6px;
+}
+.site-nav a:hover{ background: color-mix(in oklab, var(--accent) 8%, transparent); }
+
+.section{ opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+.section.in{ opacity: 1; transform: none; }
+.section + .section{ border-top: 1px solid var(--line); }
+.section .container{ padding-block: var(--space-lg); }
+
+.hero__title{
+  font-size: clamp(28px, 4.5vw, 44px);
+  letter-spacing: .3px;
+  margin: 0 0 10px;
+}
+.hero__lead{
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 18px;
+}
+.btn{
+  display: inline-block; text-decoration: none; font-weight: 600;
+  padding: 10px 16px; border-radius: var(--radius);
+  background: var(--accent); color: #fff; box-shadow: var(--shadow);
+}
+.btn:hover{ filter: brightness(1.05); }
+
+.section__title{
+  font-size: clamp(22px, 3.2vw, 30px);
+  margin: 0 0 18px;
+}
+
+.about{
+  display: grid; gap: var(--space);
+  grid-template-columns: 1fr min(360px, 100%);
+}
+.about__text p{ margin: 0 0 12px; }
+.about__list{ margin: 8px 0 0; padding-left: 1.2em; color: var(--muted); }
+.about__card{
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px;
+  box-shadow: var(--shadow);
+}
+.kv{ display: grid; grid-template-columns: 110px 1fr; gap: 10px 14px; margin: 0; }
+.kv dt{ color: var(--muted); }
+.kv dd{ margin: 0; }
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space);
+  margin: 0; padding: 0; list-style: none;
+}
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease;
+}
+.card.in{ opacity: 1; transform: none; }
+.card__title{ margin: 0 0 4px; font-size: 1.1rem; }
+.card__meta{ margin: 0 0 10px; color: var(--muted); font-size: .95rem; }
+.card__desc{ margin: 0 0 14px; }
+.card__actions{ display: flex; gap: 12px; }
+.link{ color: var(--accent); text-underline-offset: 3px; }
+
+.contact{ display: flex; flex-wrap: wrap; gap: 14px; padding: 0; margin: 10px 0 0; list-style: none; }
+
+.site-footer{
+  border-top: 1px solid var(--line);
+  padding-block: 18px; color: var(--muted);
+}
+
+
+/* --- 10/13 以下の部分追加 --- */
+/* コンテナに可変の左右余白を付与（狭い画面で詰まり防止） */
+.container{
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
+}
+
+/* Aboutを“安全なGrid”に（右カラムの最小幅を確保しつつ流動化） */
+.about{
+  display: grid;
+  gap: var(--space);
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 1fr);
+  align-items: start;
+}
+
+/* 狭い幅では1カラムにスタック */
+@media (max-width: 900px){
+  .about{
+    grid-template-columns: 1fr;
+  }
+  .about__card{
+    max-width: 560px;  /* 行幅が広すぎて読みづらくなるのを防止 */
+  }
+}
+
+/* スキルの定義リストが窮屈にならないよう調整 */
+.kv{
+  display: grid;
+  grid-template-columns: auto 1fr;  /* ラベル幅を自動に */
+  gap: 10px 14px;
+}
+@media (max-width: 560px){
+  .kv{ grid-template-columns: 1fr; } /* 1列化 */
+}
+
+/* 長い英単語やURLでのはみ出し対策 */
+.about__text p,
+.about__list li,
+.card__desc,
+.hero__lead{
+  overflow-wrap: anywhere;
+}
+
+/* 実績カードの最小幅を少し広げて潰れ防止 */
+.cards{
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ── 1) 途中改行を禁止：ブランド名・肩書き・ナビ各項目 ── */
+.brand__name,
+.brand__role,
+.site-nav a{
+  white-space: nowrap;
+  word-break: keep-all;   /* 日本語の文字間改行を抑止 */
+}
+
+/* ── 2) 横幅が足りない時は、ナビ全体を次の行に回す ── */
+.header-inner{
+  display: flex;
+  flex-wrap: wrap;        /* ← これで行ごとに折り返す（項目内では折り返さない） */
+  gap: 8px 16px;          /* 上下/左右のすき間を少し作る */
+}
+
+/* ── 3) 小さめ画面ではナビを中央寄せに整える ── */
+@media (max-width: 640px){
+  .site-nav{
+    width: 100%;
+  }
+  .site-nav ul{
+    justify-content: center;
+    gap: 10px 16px;
+    flex-wrap: wrap;      /* 項目単位で折り返しOK（単語内は折り返さない） */
+  }
+  .site-nav a{
+    padding: 6px 8px;     /* 余白を少しコンパクトに */
+    font-size: 0.95rem;
+  }
+}
+
+/* ── 4) コンテナ左右余白（狭い画面の詰まり防止）※未適用なら ── */
+.container{
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
+}
