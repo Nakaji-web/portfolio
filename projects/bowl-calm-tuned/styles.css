@@ -1,0 +1,174 @@
+/* Bowl Calm styles — desktop header nav right-aligned + mobile overlay */
+:root{
+  --bg: #FAFAF8;
+  --ink: #1C1C1C;
+  --muted: #6B6B6B;
+  --line: #E6E6E0;
+  --accent: #233445;
+  --accent-ink: #FFFFFF;
+
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img{max-width:100%;height:auto;display:block;border-radius: var(--radius)}
+
+/* Skip link */
+.skip-link{
+  position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{
+  position:static;width:auto;height:auto;padding:.5rem .75rem;background:#fff;border:1px solid var(--line);
+}
+
+/* Header */
+.site-header{
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: saturate(140%) blur(6px);
+  background: rgba(255,255,255,.6);
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.site-header__inner{
+  max-width: 1100px; margin: 0 auto; padding: .75rem 1rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.logo{font-weight:700; text-decoration:none; color:var(--ink); letter-spacing:.02em}
+
+/* 微調整版：1,2,4適用 */
+.site-header__inner{ padding:.7rem 1rem } /* 高さ調整 */
+.gnav-inline{ display:none; gap:1.25rem } /* ナビ間隔微増 */
+.gnav-inline a:hover, .gnav-inline a:focus{ background: rgba(35,52,69,.04) }
+
+/* スクロール時の薄い影 */
+.site-header.scrolled{ box-shadow: 0 2px 10px rgba(0,0,0,.04) }
+
+
+/* Desktop inline nav (右寄せ) */
+.gnav-inline{ display:none; gap:1rem }
+.gnav-inline a{ text-decoration:none; color:var(--ink); padding:.25rem .5rem; border-radius:8px }
+.gnav-inline a:focus, .gnav-inline a:hover{ background: rgba(35,52,69,.06) }
+
+/* Hamburger button */
+.nav-toggle{
+  border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer;
+  position: relative; width: 40px; height: 40px; padding:0;
+  display:grid; place-items:center;
+}
+.nav-toggle .bar{
+  width:22px; height:2px; background:var(--ink); display:block; border-radius:2px;
+  transition: transform .24s ease, opacity .24s ease;
+}
+.nav-toggle .bar + .bar{ margin-top:5px }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1){ transform: translateY(7px) rotate(45deg) }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2){ opacity:0 }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg) }
+
+/* Nav panel (mobile overlay) */
+.gnav{ gap:1rem }
+.gnav-panel{
+  position: fixed; inset: 0; display: none;
+  background: rgba(0,0,0,.25);
+  z-index: 1000;
+}
+.gnav-panel .gnav__sheet{
+  position: absolute; top:0; right:0; height:100%; width:min(78vw, 320px);
+  background:#fff; border-left:1px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 80px 20px 20px;
+  transform: translateX(100%); transition: transform .28s ease-out;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.gnav-panel a{ text-decoration:none; color:var(--ink); padding:.6rem .5rem; border-radius:8px }
+.gnav-panel a:focus, .gnav-panel a:hover{ background: rgba(35,52,69,.06) }
+.gnav-panel.is-open{ display:block }
+.gnav-panel.is-open .gnav__sheet{ transform: translateX(0) }
+
+.no-scroll{ overflow:hidden }
+
+/* Responsive switching */
+@media (min-width: 768px){
+  .gnav-inline{ display:flex }     /* デスクトップで表示 */
+  .nav-toggle{ display:none }      /* デスクトップではボタン非表示 */
+  .gnav-panel{ display:none !important } /* デスクトップではオーバーレイ無効 */
+}
+
+/* Hero */
+.hero{
+  min-height: 60vh;
+  display:grid; place-items:center;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F7F7F4 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero__inner{ text-align:center; padding: clamp(32px, 6vw, 80px) 1rem}
+.hero__title{ font-size: clamp(28px, 4vw, 40px); margin:0 0 .5rem; letter-spacing:.02em}
+.hero__sub{ color: var(--muted); margin:0 0 1.2rem}
+.btn{
+  display:inline-block; text-decoration:none; font-weight:500;
+  padding: .7rem 1.2rem; border-radius: 999px; border:1px solid var(--accent); transition: .2s ease;
+}
+.btn--primary{ background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+.btn--primary:hover, .btn--primary:focus{ filter: brightness(1.05) }
+
+/* Sections */
+.section{ padding: clamp(48px, 8vw, 96px) 0; }
+.container{ max-width: 1100px; margin:0 auto; padding:0 1rem }
+.section__title{ font-size: clamp(22px, 3vw, 28px); margin:0 0 1rem }
+
+/* Concept */
+.concept__grid{ display:grid; gap: 1.2rem }
+@media (min-width: 640px){
+  .concept__grid{ grid-template-columns: 1.2fr .8fr }
+}
+.list{ padding-left: 1.2rem; margin: .5rem 0 0; color: var(--ink) }
+.list li{ margin:.25rem 0 }
+
+/* Price */
+.price__grid{ display:grid; gap: 1rem }
+@media (min-width: 1024px){
+  .price__grid{ grid-template-columns: repeat(3, 1fr) }
+}
+.price-card{
+  background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+  padding: 1.25rem; box-shadow: var(--shadow);
+}
+.price-card__title{ margin:.25rem 0 .5rem; font-weight:600 }
+.price-card__value{ margin:0; font-size: 1.25rem }
+.note{ color: var(--muted); margin-top:.75rem }
+
+/* Gallery */
+.gallery__grid{ display:grid; gap: .8rem }
+@media (min-width: 1024px){
+  .gallery__grid{ grid-template-columns: repeat(3, 1fr) }
+}
+.gallery__grid figure{ margin:0 }
+
+/* Access */
+.access__grid{ display:grid; gap:1rem }
+@media (min-width: 640px){
+  .access__grid{ grid-template-columns: 1fr .9fr }
+}
+.hours{ border-collapse: collapse; width:100%; margin-top:.5rem }
+.hours th, .hours td{ border-bottom:1px solid var(--line); padding:.6rem .4rem; text-align:left }
+.hours th{ width:7em; color: var(--muted); font-weight:500 }
+.access__note{ color: var(--muted); margin-top:.5rem }
+.map-dummy img{ width:100%; height:auto; border:1px solid var(--line); border-radius: var(--radius) }
+
+/* Footer */
+.site-footer{ border-top:1px solid var(--line); background:#fff }
+.site-footer .container{ padding: 1rem }
+
+/* Observe (fade-in on scroll) */
+[data-observe]{ opacity:0; transform: translateY(8px); transition: opacity .28s ease-out, transform .28s ease-out }
+[data-observe].is-in{ opacity:1; transform: none }
